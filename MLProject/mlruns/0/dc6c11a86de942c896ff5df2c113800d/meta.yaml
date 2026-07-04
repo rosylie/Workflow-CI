@@ -1,0 +1,15 @@
+artifact_uri: file:///home/runner/work/Workflow-CI/Workflow-CI/MLProject/mlruns/0/dc6c11a86de942c896ff5df2c113800d/artifacts
+end_time: 1783168439880
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: dc6c11a86de942c896ff5df2c113800d
+run_name: zealous-flea-473
+run_uuid: dc6c11a86de942c896ff5df2c113800d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1783168423565
+status: 3
+tags: []
+user_id: runner

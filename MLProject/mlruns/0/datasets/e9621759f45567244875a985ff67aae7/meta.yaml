@@ -1,0 +1,30 @@
+digest: 4395a3d9
+name: dataset
+profile: '{"num_rows": 17445, "num_elements": 523350}'
+schema: '{"mlflow_colspec": [{"type": "double", "name": "hotel", "required": true},
+  {"type": "double", "name": "lead_time", "required": true}, {"type": "double", "name":
+  "arrival_date_year", "required": true}, {"type": "double", "name": "arrival_date_month",
+  "required": true}, {"type": "double", "name": "arrival_date_week_number", "required":
+  true}, {"type": "double", "name": "arrival_date_day_of_month", "required": true},
+  {"type": "double", "name": "stays_in_weekend_nights", "required": true}, {"type":
+  "double", "name": "stays_in_week_nights", "required": true}, {"type": "double",
+  "name": "adults", "required": true}, {"type": "double", "name": "children", "required":
+  true}, {"type": "double", "name": "babies", "required": true}, {"type": "double",
+  "name": "meal", "required": true}, {"type": "double", "name": "country", "required":
+  true}, {"type": "double", "name": "market_segment", "required": true}, {"type":
+  "double", "name": "distribution_channel", "required": true}, {"type": "double",
+  "name": "is_repeated_guest", "required": true}, {"type": "double", "name": "previous_cancellations",
+  "required": true}, {"type": "double", "name": "previous_bookings_not_canceled",
+  "required": true}, {"type": "double", "name": "reserved_room_type", "required":
+  true}, {"type": "double", "name": "assigned_room_type", "required": true}, {"type":
+  "double", "name": "booking_changes", "required": true}, {"type": "double", "name":
+  "deposit_type", "required": true}, {"type": "double", "name": "agent", "required":
+  true}, {"type": "double", "name": "days_in_waiting_list", "required": true}, {"type":
+  "double", "name": "customer_type", "required": true}, {"type": "double", "name":
+  "adr", "required": true}, {"type": "double", "name": "required_car_parking_spaces",
+  "required": true}, {"type": "double", "name": "total_of_special_requests", "required":
+  true}, {"type": "double", "name": "total_guests", "required": true}, {"type": "double",
+  "name": "total_nights", "required": true}]}'
+source: '{"tags": {"mlflow.user": "runner", "mlflow.source.name": "modelling.py",
+  "mlflow.source.type": "LOCAL", "mlflow.source.git.commit": "79ec2d035df866a84c48c71b6d08e27f2a3bb8a3"}}'
+source_type: code

@@ -1,0 +1,52 @@
+artifact_path: model
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.13
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.9.0
+mlflow_version: 2.19.0
+model_size_bytes: 21368676
+model_uuid: bad72ba653fb46919c74f5effdfbfc95
+run_id: dc6c11a86de942c896ff5df2c113800d
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "double", "name": "hotel", "required": true}, {"type": "double",
+    "name": "lead_time", "required": true}, {"type": "double", "name": "arrival_date_year",
+    "required": true}, {"type": "double", "name": "arrival_date_month", "required":
+    true}, {"type": "double", "name": "arrival_date_week_number", "required": true},
+    {"type": "double", "name": "arrival_date_day_of_month", "required": true}, {"type":
+    "double", "name": "stays_in_weekend_nights", "required": true}, {"type": "double",
+    "name": "stays_in_week_nights", "required": true}, {"type": "double", "name":
+    "adults", "required": true}, {"type": "double", "name": "children", "required":
+    true}, {"type": "double", "name": "babies", "required": true}, {"type": "double",
+    "name": "meal", "required": true}, {"type": "double", "name": "country", "required":
+    true}, {"type": "double", "name": "market_segment", "required": true}, {"type":
+    "double", "name": "distribution_channel", "required": true}, {"type": "double",
+    "name": "is_repeated_guest", "required": true}, {"type": "double", "name": "previous_cancellations",
+    "required": true}, {"type": "double", "name": "previous_bookings_not_canceled",
+    "required": true}, {"type": "double", "name": "reserved_room_type", "required":
+    true}, {"type": "double", "name": "assigned_room_type", "required": true}, {"type":
+    "double", "name": "booking_changes", "required": true}, {"type": "double", "name":
+    "deposit_type", "required": true}, {"type": "double", "name": "agent", "required":
+    true}, {"type": "double", "name": "days_in_waiting_list", "required": true}, {"type":
+    "double", "name": "customer_type", "required": true}, {"type": "double", "name":
+    "adr", "required": true}, {"type": "double", "name": "required_car_parking_spaces",
+    "required": true}, {"type": "double", "name": "total_of_special_requests", "required":
+    true}, {"type": "double", "name": "total_guests", "required": true}, {"type":
+    "double", "name": "total_nights", "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "int64", "shape": [-1]}}]'
+  params: null
+utc_time_created: '2026-07-04 12:33:54.494861'
