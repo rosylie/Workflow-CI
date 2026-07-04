@@ -41,24 +41,23 @@ def main(data_dir: str):
     mlflow.sklearn.autolog(log_models=True, log_model_signatures=True, log_input_examples=True)
 
     # Deteksi apakah script ini dipanggil lewat `mlflow run .` (MLflow Projects
-    # CLI). Jika ya, MLflow CLI SUDAH menyiapkan tracking URI, experiment, dan
-    # run aktif lewat environment variable sebelum script ini dieksekusi.
-    # Memanggil mlflow.set_experiment() / mlflow.start_run() secara manual di
-    # kondisi ini akan BENTROK dengan konteks yang sudah disiapkan CLI
-    # (error: "active run ID does not match environment run ID").
+    # CLI). CLI menyiapkan run lewat environment variable MLFLOW_RUN_ID (plus
+    # MLFLOW_EXPERIMENT_ID & MLFLOW_TRACKING_URI) SEBELUM script dieksekusi.
+    # `mlflow.active_run()` TIDAK mendeteksi ini (masih None sampai
+    # start_run() benar-benar dipanggil) - makanya deteksi harus lewat env
+    # var secara langsung.
     #
-    # Jadi: kalau sudah ada active run (dipanggil via `mlflow run`), langsung
-    # training saja tanpa start_run/set_experiment tambahan. Kalau tidak ada
-    # active run (dipanggil langsung via `python modelling.py`), baru kita
-    # atur sendiri tracking URI, experiment, dan run-nya.
-    active_run = mlflow.active_run()
-    started_run_here = False
+    # Kalau dipanggil via `mlflow run`: JANGAN override tracking URI/experiment
+    # secara manual - biarkan environment variable dari CLI yang menentukan,
+    # supaya start_run() otomatis melanjutkan run yang sudah disiapkan.
+    #
+    # Kalau dipanggil langsung (`python modelling.py`): tidak ada env var itu,
+    # jadi kita atur sendiri tracking URI & experiment-nya.
+    running_via_mlflow_cli = "MLFLOW_RUN_ID" in os.environ
 
-    if active_run is None:
+    if not running_via_mlflow_cli:
         mlflow.set_tracking_uri("file:./mlruns")
         mlflow.set_experiment("Hotel_Booking_Cancellation_CI")
-        mlflow.start_run()
-        started_run_here = True
 
     X_train, X_test, y_train, y_test = load_data(data_dir)
 
@@ -69,7 +68,7 @@ def main(data_dir: str):
         n_jobs=-1,
     )
 
-    try:
+    with mlflow.start_run():
         model.fit(X_train, y_train)
 
         y_pred_test = model.predict(X_test)
@@ -78,9 +77,6 @@ def main(data_dir: str):
 
         print(f"[CI] Test Accuracy : {acc:.4f}")
         print(f"[CI] Test F1-Score : {f1:.4f}")
-    finally:
-        if started_run_here:
-            mlflow.end_run()
 
 
 if __name__ == "__main__":
