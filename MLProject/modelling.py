@@ -61,9 +61,14 @@ def main(data_dir: str):
 
     X_train, X_test, y_train, y_test = load_data(data_dir)
 
+    # Parameter dibatasi (max_depth, min_samples_leaf) supaya ukuran model
+    # setelah di-pickle tetap kecil (< 100 MB, batas ukuran file GitHub).
+    # Tanpa batasan ini, RandomForest dengan pohon tak terbatas bisa
+    # menghasilkan model.pkl ratusan MB yang membuat commit/push gagal.
     model = RandomForestClassifier(
-        n_estimators=200,
-        max_depth=None,
+        n_estimators=100,
+        max_depth=15,
+        min_samples_leaf=5,
         random_state=RANDOM_STATE,
         n_jobs=-1,
     )
