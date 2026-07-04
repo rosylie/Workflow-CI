@@ -1,0 +1,9 @@
+name: hotel_booking_cancellation_ci
+
+conda_env: conda.yaml
+
+entry_points:
+  main:
+    parameters:
+      data_dir: {type: str, default: "namadataset_preprocessing"}
+    command: "python modelling.py --data_dir {data_dir}"
